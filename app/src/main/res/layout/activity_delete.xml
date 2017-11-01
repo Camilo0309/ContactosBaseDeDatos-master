@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jonmid.contactosbasededatos.Views.DeleteActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="50dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Desea Eliminar el Contacto?"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/delete_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Id: "
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+            <TextView
+                android:id="@+id/delete_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                android:textAlignment="center"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/delete_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone: "
+                android:textAlignment="center"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/delete_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email: "
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--Botones-->
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/btn_Cancelar"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickShowPrincipal"
+            android:text="@string/btn_Cancelar" />
+
+        <Button
+            android:id="@+id/btn_Aceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:text="@string/btn_Aceptar"
+            android:textColor="@android:color/white"
+            android:onClick="onClickDeleteContact"/>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
