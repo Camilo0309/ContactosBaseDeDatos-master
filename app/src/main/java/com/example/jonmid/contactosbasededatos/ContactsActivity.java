@@ -85,7 +85,7 @@ public class ContactsActivity extends AppCompatActivity {
         contactList.clear();
         recyclerViewContacts.setAdapter(null);
         SQLiteDatabase  db = sqliteHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id,name,phone,email FROM users where name = '"+textInputEditText.getText().toString()+"'", null);
+        Cursor cursor = db.rawQuery("SELECT id,name,phone,email FROM users where name = '"+textInputEditText.getText()+"'", null);
         try {
             while (cursor.moveToNext()){
                 Contact contact = new Contact();

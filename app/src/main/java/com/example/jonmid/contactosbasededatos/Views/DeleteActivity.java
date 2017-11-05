@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.jonmid.contactosbasededatos.ContactsActivity;
 import com.example.jonmid.contactosbasededatos.Helpers.SqliteHelper;
 import com.example.jonmid.contactosbasededatos.R;
+import com.example.jonmid.contactosbasededatos.Utilities.Constants;
 
 public class DeleteActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class DeleteActivity extends AppCompatActivity {
         textViewName = (TextView) findViewById(R.id.delete_name);
         textViewPhone = (TextView) findViewById(R.id.delete_phone);
         textViewEmail = (TextView) findViewById(R.id.delete_Email);
-        sqliteHelper = new SqliteHelper(this, "db_users", null, 1);
+        sqliteHelper = new SqliteHelper(this, "db_contacts", null, 1);
 
         textViewid.setText(Integer.toString(getIntent().getExtras().getInt("id")));
         textViewName.setText(getIntent().getExtras().getString("name"));
@@ -40,7 +41,7 @@ public class DeleteActivity extends AppCompatActivity {
 
     }
 
-    public void onClickShowPrincipal(View view){
+    public void onClickShowPrincipal(){
 
         Intent intent = new Intent(this, ContactsActivity.class);
         startActivity(intent);
@@ -48,13 +49,25 @@ public class DeleteActivity extends AppCompatActivity {
 
     public void onClickDeleteContact(View view){
 
-       SQLiteDatabase db = sqliteHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("DELETE from users WHERE id ='"+Integer.parseInt(textViewid.getText().toString())+"'", null);
-        cursor.close();
-        Toast.makeText(this, "EL CONTACTO SE HA ELIMINADO CON EXITO", Toast.LENGTH_SHORT).show();
-        onClickShowPrincipal(view);
+       SQLiteDatabase db = sqliteHelper.getWritableDatabase();
+       int id = Integer.parseInt(textViewid.getText().toString());
+       Integer date = db.delete(Constants.TABLA_NAME_USERS,Constants.TABLA_FIELD_ID+ "=" + id, null);
+       db.close();
+       if (date != 0){
+           Toast.makeText(this,"El usuario: "+textViewName.getText()+ " EL USUARIO SE ELIMINO CON EXITO! ",Toast.LENGTH_SHORT).show();
+           onClickShowPrincipal();
 
-        Toast.makeText(this, "Id: "+ Integer.parseInt(textViewid.getText().toString()), Toast.LENGTH_SHORT).show();
+       }else {
+
+           Toast.makeText(this,"El usuario: "+textViewName.getText()+ " NO HAY DATOS PARA MOSTRAR ",Toast.LENGTH_SHORT).show();
+           onClickShowPrincipal();
+
+       }
+       //db.delete(Constants.TABLA_NAME_USERS, Constants.TABLA_FIELD_ID+"='"+Integer.parseInt(textViewid.getText().toString())+"'", null);
+        //Cursor cursor = db.rawQuery("DELETE from users WHERE id ='"+Constants.TABLA_FIELD_ID+"'", null);
+        //cursor.close();
+        //Toast.makeText(this, "EL CONTACTO SE HA ELIMINADO CON EXITO", Toast.LENGTH_SHORT).show();
+        //onClickShowPrincipal(view);
 
     }
 
