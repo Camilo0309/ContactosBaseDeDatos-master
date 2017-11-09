@@ -36,6 +36,7 @@ public class ContactsActivity extends AppCompatActivity {
 
         recyclerViewContacts = (RecyclerView) findViewById(R.id.id_rv_contacts);
         textInputEditText = (TextInputEditText) findViewById(R.id.ced1);
+
         sqliteHelper = new SqliteHelper(this, "db_contacts", null, 1);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
